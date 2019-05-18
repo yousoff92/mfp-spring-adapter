@@ -1,0 +1,90 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.yousoff</groupId>
+	<artifactId>mfp-spring-adapter</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<packaging>adapter</packaging>
+	<name>mfpSpringAdapter</name>
+
+	<properties>
+		<!-- Use UTF-8 as the encoding of the adapter -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- MobileFirst adapter deployment properties -->
+		<mfpfUrl>http://localhost:9080/mfpadmin</mfpfUrl>
+		<mfpfUser>admin</mfpfUser>
+		<mfpfPassword>admin</mfpfPassword>
+		<mfpfRuntime>mfp</mfpfRuntime>
+		
+		<java.version>1.8</java.version>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<lombok.version>1.18.6</lombok.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.ibm.mfp</groupId>
+			<artifactId>adapter-maven-api</artifactId>
+			<scope>provided</scope>
+			<version>8.0.2019043010</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ibm.mfp</groupId>
+			<artifactId>mfp-security-checks-base</artifactId>
+			<version>[8.0.0,9.0.0)</version>
+		</dependency>
+
+		<!-- Spring Integration with IBM MFP -->
+		<dependency>
+			<groupId>com.github.mfpdev</groupId>
+			<artifactId>mfp-adapters-spring-integration</artifactId>
+			<version>1.0.0</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-context</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-expression</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-web</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+				<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.yousoff</groupId>
+			<artifactId>spring-hibernate</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.ibm.mfp</groupId>
+				<artifactId>adapter-maven-plugin</artifactId>
+				<extensions>true</extensions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
